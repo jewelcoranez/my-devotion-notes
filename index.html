@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Devotion Notes</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>My Devotion Notes</h1>
+
+        <div class="form-box">
+
+            <h3>Create Devotion</h3>
+
+            <input type="text" id="book" placeholder="Book">
+            <input type="text" id="chapter" placeholder="Chapter">
+            <input type="text" id="verse" placeholder="Verse">
+
+            <button class="write-toggle" onclick="toggleForm()">
+                <span>Write Your Devotion</span>
+                <span id="formArrow">⬇</span>
+            </button>
+
+            <div id="devotionForm" class="devotion-form">
+
+                <textarea id="devotion"
+                    placeholder="Write your devotion here..."></textarea>
+
+                <button class="add-btn" onclick="addDevotion()">
+                    + Add Devotion
+                </button>
+
+            </div>
+
+        </div>
+
+        <h3>My Devotions</h3>
+
+        <div id="devotionList"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
