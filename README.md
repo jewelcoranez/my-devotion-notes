@@ -1,1 +1,2 @@
 # my-devotion-notes
+Talagang hindi lang dapat sinsabe lang natin na mahall natin ang Diyos daapat ginagwa talaga natin at nakikita saatin na mahal talaga natin ang Diyos, maraming pagkakataon na minsan niloloko natin ang ating sarili minsan sinasabe natin mahal natin si Lord pero hindi naman natin ginagwa ang Kanyang kalooban, pero grabe talaga ang pagmamahal saatin ni God kahit na nakakalimutan natin na

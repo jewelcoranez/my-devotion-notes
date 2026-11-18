@@ -3,7 +3,48 @@ let devotions = JSON.parse(
     localStorage.getItem("devotions")
 ) || [];
 
-// Save devotions to Local Storage
+// Get current local date
+function getLocalDate() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+// Format date for display
+function formatDate(dateString) {
+    if (!dateString) {
+        return "Date not recorded";
+    }
+
+    const [year, month, day] = dateString.split("-");
+
+    const date = new Date(
+        Number(year),
+        Number(month) - 1,
+        Number(day)
+    );
+
+    return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+}
+
+// Display Today's Date
+function displayTodayDate() {
+    const todayDate = document.getElementById("todayDate");
+
+    if (todayDate) {
+        todayDate.textContent = formatDate(getLocalDate());
+    }
+}
+
+// Save devotions
 function saveDevotions() {
     localStorage.setItem(
         "devotions",
@@ -13,7 +54,6 @@ function saveDevotions() {
 
 // Show or hide devotion form
 function toggleForm() {
-
     const form = document.getElementById("devotionForm");
     const arrow = document.getElementById("formArrow");
 
@@ -28,7 +68,6 @@ function toggleForm() {
 
 // Add new devotion
 function addDevotion() {
-
     const book = document.getElementById("book").value.trim();
     const chapter = document.getElementById("chapter").value.trim();
     const verse = document.getElementById("verse").value.trim();
@@ -43,7 +82,8 @@ function addDevotion() {
         book,
         chapter,
         verse,
-        devotion
+        devotion,
+        dateCreated: getLocalDate()
     });
 
     saveDevotions();
@@ -61,13 +101,11 @@ function addDevotion() {
 
 // Display saved devotions
 function displayDevotions() {
-
     const list = document.getElementById("devotionList");
 
     list.innerHTML = "";
 
     devotions.forEach((item, index) => {
-
         list.innerHTML += `
             <div class="devotion-card">
 
@@ -95,6 +133,14 @@ function displayDevotions() {
 
                 </div>
 
+                <div class="devotion-date">
+                    Date Created: ${escapeHTML(
+                        item.dateCreated
+                            ? formatDate(item.dateCreated)
+                            : "Date not recorded"
+                    )}
+                </div>
+
                 <div class="devotion-content" id="content-${index}">
                     ${escapeHTML(item.devotion)}
                 </div>
@@ -106,11 +152,10 @@ function displayDevotions() {
 
 // Show or hide individual devotion
 function toggleDevotion(index) {
-
     const content = document.getElementById("content-" + index);
 
     const button = content.previousElementSibling
-        .querySelector(".toggle-btn");
+        .previousElementSibling.querySelector(".toggle-btn");
 
     if (content.style.display === "block") {
         content.style.display = "none";
@@ -123,27 +168,22 @@ function toggleDevotion(index) {
 
 // Delete devotion
 function deleteDevotion(index) {
-
     const confirmDelete = confirm(
         "Are you sure you want to delete this devotion?"
     );
 
     if (confirmDelete) {
-
         devotions.splice(index, 1);
 
         saveDevotions();
 
         displayDevotions();
-
     }
 }
 
 // Protect displayed text
 function escapeHTML(value) {
-
     return String(value).replace(/[&<>"']/g, function(char) {
-
         return {
             "&": "&amp;",
             "<": "&lt;",
@@ -151,9 +191,9 @@ function escapeHTML(value) {
             '"': "&quot;",
             "'": "&#39;"
         }[char];
-
     });
 }
 
-// Load saved devotions
+// Load date and saved devotions
+displayTodayDate();
 displayDevotions();

@@ -15,13 +15,24 @@
 
         <h1>My Devotion Notes</h1>
 
+        <!-- Today's Date -->
+        <div class="today-date">
+            <span>Today's Date:</span>
+            <strong id="todayDate"></strong>
+        </div>
+
         <div class="form-box">
 
             <h3>Create Devotion</h3>
 
-            <input type="text" id="book" placeholder="Book">
-            <input type="text" id="chapter" placeholder="Chapter">
-            <input type="text" id="verse" placeholder="Verse">
+            <label for="book">Book</label>
+            <input type="text" id="book" placeholder="Enter book name">
+
+            <label for="chapter">Chapter</label>
+            <input type="text" id="chapter" placeholder="Enter chapter">
+
+            <label for="verse">Verse</label>
+            <input type="text" id="verse" placeholder="Enter verse">
 
             <button class="write-toggle" onclick="toggleForm()">
                 <span>Write Your Devotion</span>
@@ -43,9 +54,13 @@
 
         <h3>My Devotions</h3>
 
-        <div id="devotionList"></div>
+       <div id="devotionList"></div>
 
-    </div>
+<footer class="footer">
+    Preferred by Jewelskie
+</footer>
+
+</div>
 
     <script src="script.js"></script>
 
